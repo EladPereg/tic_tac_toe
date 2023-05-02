@@ -1,6 +1,6 @@
 * {
-    padding: 0;
-    margin: 0;
+    /* padding: 0;
+    margin: 0; */
     box-sizing: border-box;
 }
 
@@ -12,17 +12,17 @@
 
 body {
     color: var(--orange);
-    font-family: 'Finger Paint', cursive;
+    /* font-family: 'Finger Paint', cursive; */
 }
 
 h1 {
     font-size: 54px;
     text-transform: uppercase;
+    font-family: 'Finger Paint', cursive;
 }
 
 p {
     position: absolute;
-    /* left: 1100px; */
     left:70%;
     bottom: 500px;
     font-size: 50px;
@@ -56,6 +56,8 @@ p {
     border-right: 2px solid;
     border-bottom: 2px solid;
     cursor: pointer;
+    font-family: 'Finger Paint', cursive;
+
 }
 
 .box:nth-child(3n) {
@@ -142,13 +144,15 @@ td {
 
     table {
         margin-left: 25%;
-        top: 700px;
+        top: 720px;
+        /* top: 700px; */
         width: 300px;
     }
 
     p {
         top: 800px;
         font-size: 20px;
-        left: 180px;
+        left: 200px;
+        /* left: 180px; */
     }
 }
