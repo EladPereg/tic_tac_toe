@@ -1,6 +1,6 @@
 let playerText = document.getElementById('playerText');
 let resrartBtn = document.getElementById('reastartBtn');
-let playerTurn=document.getElementById('playerTurn');
+let playerTurn = document.getElementById('playerTurn');
 let boxes = Array.from(document.getElementsByClassName('box')); /*גורמים לכל אחד מהתיבות להיות בתוך מערך אחד שיכיל את כולם */
 let x_wins = document.getElementById('x_wins');
 let o_wins = document.getElementById('o_wins');
@@ -12,11 +12,30 @@ const X_text = 'x';
 let currentPlayer = X_text;
 let spaces = Array(9).fill(null); /*יוצרים מערך ריק על מנת שנוכל לדחוף לתוכו כל איבר פעם אחת ללא חזרות */
 
+
+let clickSound = new Audio("sounds/click.wav")
+let gameOverSound = new Audio("sounds/gameOver.wav")
 const startGame = () => {
     boxes.forEach(val => val.addEventListener('click', boxClicked)) /*פונקציה שנותנת אפשרות ללחוץ על כל איבר בפני עצמו ,לבצע פעולה עצמאית ולהתייחס בנפרד לכל תיבה */
 }
 
-let flag = true
+function hoverText() {            /*יצירת אפקט של ריחוף */
+    boxes.forEach((val) => {
+        val.classList.remove("x-hover")               /*מסירים מכל איבר את הקלאס,ואז רק תיבה שהיא ריקה יהיה אפשר לעשות עליה את הריחוף וככה מונעים כפילויות בריחוף */
+        val.classList.remove("o-hover")
+    });
+    const hoverClass = `${currentPlayer.toLowerCase()}-hover`;
+
+    boxes.forEach((val) => {
+        if (val.innerText == "") {
+            val.classList.add(hoverClass)
+        }
+    })
+
+}
+hoverText()
+
+let flag = true  /*דגל למניעת לחיצה לאחר ניצחון */
 function boxClicked(e) {
     if (flag) {
         const id = e.target.id;
@@ -25,20 +44,30 @@ function boxClicked(e) {
             e.target.innerText = currentPlayer;
 
             if (playerHasWon() !== false) {
-                flag=false
+                flag = false
+                gameOverSound.play()
                 playerText.innerText = `${currentPlayer.toLocaleUpperCase()} wins!`
                 let wining_blacks = playerHasWon()
                 currentPlayer = currentPlayer == X_text ? xWins++ : oWins++
                 x_wins.innerHTML = xWins
                 o_wins.innerHTML = oWins
-                console.log(xWins)
-                playerTurn.style.display='none'
+                playerTurn.style.display = 'none'
                 wining_blacks.map(val => boxes[val].style.backgroundColor = '#4557cc')
             }
+            let checkIfEqualToNull = spaces.every((val) => {
+                return val != null
+            })
+            if(checkIfEqualToNull===true){
+                playerText.innerText=`it's a Draw !`
+                playerTurn.style.display = 'none'
+            }
+
             currentPlayer = currentPlayer == X_text ? O_text : X_text;
-            playerTurn.innerHTML=`${currentPlayer.toLocaleUpperCase()}'s turn`
+            playerTurn.innerHTML = `${currentPlayer.toLocaleUpperCase()}'s turn`
         }
     }
+    clickSound.play()
+    hoverText()
 }
 
 const winningCombos = [
@@ -62,18 +91,19 @@ function playerHasWon() {
     return false
 }
 
-resrartBtn.addEventListener('click', reatart);
+resrartBtn.addEventListener('click', reastart);
 
-function reatart() {
+function reastart() {
     spaces.fill(null);
     boxes.forEach(val => {
         val.innerText = ''
         val.style.backgroundColor = ''
     })
     playerText.innerText = 'Tic Tac Toe'
+    flag = true
+    playerTurn.innerHTML = `X's turn`
+    playerTurn.style.display = 'block'
     currentPlayer = X_text;
-    flag=true
-    playerTurn.innerHTML=`X's turn`
-    playerTurn.style.display='block'
+    hoverText()
 }
 startGame()

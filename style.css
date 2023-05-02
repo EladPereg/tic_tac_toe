@@ -5,12 +5,13 @@
 }
 
 :root {
-    background-color: #37505C;
+    /* background-color: #37505C; */
     --orange: #F2C14E;
     --winning-blocks: #2d414b;
 }
 
 body {
+    background-color: #37505C;
     color: var(--orange);
     /* font-family: 'Finger Paint', cursive; */
 }
@@ -68,6 +69,15 @@ p {
 .box:nth-child(6)~.box {
     border-bottom: none;
     /* תספור 6 ילדים ששייכים לקלאס הנוכחי,ואז כל דיב ששייך לקלאס הנוכחי,תסיר לו את הגבול התחתון*/
+}
+
+.x-hover:hover::after{
+    content: 'x';
+    opacity: 0.4;
+}
+.o-hover:hover::after{
+    content: 'o';
+    opacity: 0.4;
 }
 
 button {
