@@ -1,0 +1,154 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    background-color: #37505C;
+    --orange: #F2C14E;
+    --winning-blocks: #2d414b;
+}
+
+body {
+    color: var(--orange);
+    font-family: 'Finger Paint', cursive;
+}
+
+h1 {
+    font-size: 54px;
+    text-transform: uppercase;
+}
+
+p {
+    position: absolute;
+    /* left: 1100px; */
+    left:70%;
+    bottom: 500px;
+    font-size: 50px;
+}
+
+.container {
+    width: auto;
+    height: 713px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #37505C;
+}
+
+#gameBoard {
+    width: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.box {
+    height: 150px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--orange);
+    font-size: 120px;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    cursor: pointer;
+}
+
+.box:nth-child(3n) {
+    border-right: none;
+    /* עבור כל ילד שלישי ששייך לקלאס הנוכחי,תסיר את הגבול הימני*/
+}
+
+.box:nth-child(6)~.box {
+    border-bottom: none;
+    /* תספור 6 ילדים ששייכים לקלאס הנוכחי,ואז כל דיב ששייך לקלאס הנוכחי,תסיר לו את הגבול התחתון*/
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: var(--orange);
+    font-size: 18px;
+    transition: 200ms transform;
+    font-weight: 600;
+}
+
+button:hover {
+    cursor: pointer;
+    color: aliceblue;
+    transform: translateY(-2px);
+    border-collapse: collapse;
+}
+
+
+table {
+    margin-left: 7%;
+    position: absolute;
+    bottom: 480px;
+    border: 4px black solid;
+    border-collapse: collapse;
+    width: 350px;
+    height: 100px;
+}
+
+tr {
+    border: 4px black solid;
+}
+
+th {
+    border: 4px black solid;
+}
+
+td {
+    border: 4px black solid;
+    text-align: center;
+}
+
+@media(max-width:1000px) {
+    table {
+        width: 200px;
+        height: 80px;
+        bottom: 500px;
+        margin-left: 0;
+    }
+
+    p {
+        position: absolute;
+        left: 650px;
+        bottom: 500px;
+    }
+}
+
+@media(max-width:700px) {
+    h1 {
+        margin-left: 120px;
+        text-align: center;
+        font-size: 30px;
+    }
+
+    button {
+        margin-left: 120px;
+        margin-top: 15px;
+    }
+
+    #gameBoard {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    table {
+        margin-left: 25%;
+        top: 700px;
+        width: 300px;
+    }
+
+    p {
+        top: 800px;
+        font-size: 20px;
+        left: 180px;
+    }
+}
