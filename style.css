@@ -137,13 +137,13 @@ td {
 
 @media(max-width:700px) {
     h1 {
-        margin-left: 120px;
+        margin-left: 90px;
         text-align: center;
         font-size: 30px;
     }
 
     button {
-        margin-left: 120px;
+        margin-left:90px;
         margin-top: 15px;
     }
 
